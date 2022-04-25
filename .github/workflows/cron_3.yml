@@ -30,4 +30,4 @@ jobs:
         docker run \
         -e JOB_NAME="report" \
         -e DATABASE_URL="${{  secrets.DATABASE_URL }}" \
-        huyhoang08/ytvid:latest
+        ghcr.io/admicro/ytvid:latest
