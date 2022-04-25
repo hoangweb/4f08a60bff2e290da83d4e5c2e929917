@@ -30,4 +30,4 @@ jobs:
         docker run \
         -e JOB_NAME="find_video" \
         -e DATABASE_URL="${{  secrets.DATABASE_URL }}" \
-        ghcr.io/admicro/ytvid:latest
+        huyhoang08/ytvid:latest
