@@ -1,0 +1,23 @@
+name: Cron-1 every hours
+
+on:
+  workflow_dispatch:
+    inputs:
+      token:
+        description: 'secret token'
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+    - uses: actions/checkout@master
+    
+    - name: docker registry login
+      run: echo "${{  secrets.DOCKER_CONTAINER_REGISTRY_TOKEN }}" | docker login ghcr.io --username admicro --password-stdin
+      
+    - name: Run cron
+      if: success()
+      run: |
+        docker run ghcr.io/admicro/ytvid_auth:latest
