@@ -1,4 +1,4 @@
-name: Cron-1 every hours
+name: Auth Account
 
 on:
   workflow_dispatch:
