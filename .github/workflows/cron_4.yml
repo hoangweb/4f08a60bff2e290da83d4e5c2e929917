@@ -25,7 +25,7 @@ jobs:
       if: success()
       run: |
         docker run \
-        --hostname cloudshell -e SHELLUSER="kythuat_hoangweb" \
+        --hostname cloudshell -e SHELLUSER="ghact" \
         -e JOB_NAME="up_video_yt" \
         -e DATABASE_URL="${{  secrets.DATABASE_URL }}" \
         ghcr.io/admicro/ytvid:latest
