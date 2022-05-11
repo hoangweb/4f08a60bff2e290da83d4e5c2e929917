@@ -1,6 +1,9 @@
 name: Cron-3 every hour
 
 on:
+  schedule:
+    - cron: "0 * * * *"
+
   workflow_dispatch:
     inputs:
       token:
