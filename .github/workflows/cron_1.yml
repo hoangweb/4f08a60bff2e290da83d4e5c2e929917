@@ -1,4 +1,4 @@
-name: Cron-1 every hours
+name: Find video every hours
 
 on:
   schedule:
@@ -24,10 +24,12 @@ jobs:
     - name: docker registry login
       run: echo "${{  secrets.DOCKER_CONTAINER_REGISTRY_TOKEN }}" | docker login ghcr.io --username admicro --password-stdin
       
-    - name: Run cron
+    
+    - name: Run find tiktok
       if: success()
       run: |
         docker run \
         -e JOB_NAME="find_video" \
         -e DATABASE_URL="${{  secrets.DATABASE_URL }}" \
+        -e SOURCE=tiktok \
         ghcr.io/admicro/ytvid:latest
