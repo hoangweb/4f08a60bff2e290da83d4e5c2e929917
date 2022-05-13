@@ -1,8 +1,8 @@
-name: Cron-3 every hour
+name: Report,claim - every 2 hours
 
 on:
   schedule:
-    - cron: "0 * * * *"
+    - cron: "0 */2 * * *"
 
   workflow_dispatch:
     inputs:
@@ -24,10 +24,20 @@ jobs:
     - name: docker registry login
       run: echo "${{  secrets.DOCKER_CONTAINER_REGISTRY_TOKEN }}" | docker login ghcr.io --username admicro --password-stdin
       
-    - name: Run cron
+    - name: Run report
       if: success()
       run: |
         docker run \
-        -e JOB_NAME="up_video_yt" \
+        -e JOB_NAME="report" \
         -e DATABASE_URL="${{  secrets.DATABASE_URL }}" \
         ghcr.io/admicro/ytvid:latest
+
+    - name: Run find claim
+      if: success()
+      run: |
+        docker run \
+        -e JOB_NAME="find_claim" \
+        -e DATABASE_URL="${{  secrets.DATABASE_URL }}" \
+        ghcr.io/admicro/ytvid:latest
+
+    
