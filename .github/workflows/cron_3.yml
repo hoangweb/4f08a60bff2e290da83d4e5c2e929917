@@ -1,8 +1,8 @@
-name: Cron-3 every 2 hours
+name: Up video every hour
 
 on:
   schedule:
-    - cron: "0 */2 * * *"
+    - cron: "0 * * * *"
 
   workflow_dispatch:
     inputs:
@@ -28,6 +28,7 @@ jobs:
       if: success()
       run: |
         docker run \
-        -e JOB_NAME="report" \
+        -e SOURCE="tiktok" \
+        -e JOB_NAME="up_video_yt" \
         -e DATABASE_URL="${{  secrets.DATABASE_URL }}" \
         ghcr.io/admicro/ytvid:latest
