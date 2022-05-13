@@ -1,4 +1,4 @@
-name: Cron-2 every hours
+name: Process video every hours
 
 on:
   schedule:
@@ -28,6 +28,7 @@ jobs:
       if: success()
       run: |
         docker run \
+        -e SOURCE="tiktok" \
         -e JOB_NAME="up_video" \
         -e DATABASE_URL="${{  secrets.DATABASE_URL }}" \
         ghcr.io/admicro/ytvid:latest
